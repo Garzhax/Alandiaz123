@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Playercontroller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float moveSpeed = 10f; // Velocidad del movimiento
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>(); // Obtiene el componente Rigidbody del jugador
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float horizontal = Input.GetAxis("Horizontal"); // Obtiene la entrada horizontal del teclado
+        float vertical = Input.GetAxis("Vertical"); // Obtiene la entrada vertical del teclado
+
+        Vector3 movement = new Vector3(horizontal, 0.0f, vertical); // Crea un vector de movimiento
+        rb.AddForce(movement * moveSpeed); // Aplica una fuerza al Rigidbody para mover el jugador
     }
 }
